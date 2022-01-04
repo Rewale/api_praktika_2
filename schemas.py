@@ -17,7 +17,11 @@ class User(BaseModel):
     username: str
 
 
-class GetVideo(BaseModel):
-    user: User
-    title: str
+class GetListVideo(BaseModel):
+    id: int
     description: str
+
+
+class GetVideo(GetListVideo):
+    user: User
+
