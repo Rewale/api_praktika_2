@@ -28,7 +28,7 @@ async def migrate():
 
 @app.get('/image/{image_name}')
 def get_file(image_name):
-    if os.path.isfile(f'materials/{image_name}'):
+    if os.path.exists(f'materials/{image_name}'):
         return FileResponse(path=f'materials/{image_name}')
     else:
         return FileResponse(path=f'materials/picture.png')
