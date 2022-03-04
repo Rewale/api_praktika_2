@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 from fastapi import FastAPI
@@ -27,9 +28,9 @@ async def migrate():
 
 @app.get('/image/{image_name}')
 def get_file(image_name):
-    try:
+    if os.path.isfile(f'materials/{image_name}'):
         return FileResponse(path=f'materials/{image_name}')
-    except:
+    else:
         return FileResponse(path=f'materials/picture.png')
 
 
@@ -53,7 +54,6 @@ async def list_materials():
     """ Получение списка материала"""
 
     return await models.Material.objects.select_all().all()
-
 
 
 @app.get('/suppliers')
