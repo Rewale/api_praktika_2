@@ -27,7 +27,10 @@ async def migrate():
 
 @app.get('/image/{image_name}')
 def get_file(image_name):
-    return FileResponse(path=f'materials/{image_name}')
+    try:
+        return FileResponse(path=f'materials/{image_name}')
+    except:
+        return FileResponse(path=f'materials/picture.png')
 
 
 @app.get('/material/insert')
@@ -50,6 +53,7 @@ async def list_materials():
     """ Получение списка материала"""
 
     return await models.Material.objects.select_all().all()
+
 
 
 @app.get('/suppliers')
