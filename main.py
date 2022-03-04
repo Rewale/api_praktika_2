@@ -49,7 +49,7 @@ async def import_all():
 async def list_materials():
     """ Получение списка материала"""
 
-    return await models.Material.objects.all()
+    return await models.Material.objects.select_all().all()
 
 
 @app.get('/suppliers')
